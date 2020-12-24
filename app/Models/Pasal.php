@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\PelanggaranItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pasal extends Model
 {
@@ -13,5 +14,10 @@ class Pasal extends Model
 
     protected $guarded = [
         'id'
-    ];
+    ]; 
+
+    public function PelanggaranItem()
+    {
+        return $this->hasMany(PelanggaranItem::class);
+    }
 }

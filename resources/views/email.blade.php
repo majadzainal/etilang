@@ -58,8 +58,10 @@
       <table class="table table-borderless table-striped table-hover">
             <thead>
                   <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>NIK</th>
+                        <th>Perkara</th>
+                        <th>Denda</th>
                         <th>Total Denda</th>
                         <th>Tanggal Pelanggaran</th>
                   </tr>
@@ -68,13 +70,37 @@
                   @php 
                         $no = 1;
                   @endphp
-                  @foreach($pelanggaran as $pel)
+                  @foreach($pel as $pela)
+
+                    @php 
+                        $totalDenda = 0;
+                        $itemCount = count($pela->PelanggaranItem);
+
+                    @endphp
+
+                    @foreach($pela->PelanggaranItem as $item)
+                    @php 
+                        $totalDenda += $item->denda;
+                    @endphp
+                    @endforeach
                   <tr>
-                        <td>{{ $no }}</td>
-                        <td>{{ $pel->nik }}</td>
-                        <td>Rp. {{ number_format($pel->denda) }}</td>
-                        <td>{{ $pel->created_at }}</td>
+                        <td rowsspan="$itemCount">{{ $no }}</td>
+                        <td rowsspan="$itemCount">{{ $pela->nik }}</td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td>Rp. {{ number_format($totalDenda) }}</td>
+                        <td>{{ $pela->created_at }}</td>
                   </tr>
+                        @foreach($pela->PelanggaranItem as $item)
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $item->Pasal->perkara }}</td>
+                        <td>Rp. {{ number_format($item->denda) }}</td>
+                        <td> - </td>
+                        <td>{{ $pela->created_at }}</td>
+                  </tr>
+                        @endforeach
                   @php 
                         $no++;
                   @endphp

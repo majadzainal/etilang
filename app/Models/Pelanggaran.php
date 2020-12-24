@@ -14,7 +14,7 @@ class Pelanggaran extends Model
 
     protected $guarded = [
         'id' 
-    ];
+    ]; 
 
     public function PelanggaranItem()
     {

@@ -35,20 +35,11 @@ class EtilangMailController extends Mailable
     {
         $nik = $this->nik;
         $ktp = Ktp::where('nik', $nik)->get()->first();
-        $pelanggaran = Pelanggaran::where('nik', $nik)
-                        ->where('status', 'done')
-                        ->where('paid', 'tilang')
-                        ->orderBy('created_at', 'DESC')
-                        ->get()->first();
-        
-        $pelanggaran_item = DB::table('pelanggaran_item')
-                        ->leftJoin('pasal', 'pelanggaran_item.pasal_id', '=', 'pasal.id')
-                        ->select('pelanggaran_item.id', 'pelanggaran_item.created_at', 'pelanggaran_item.denda', 'pasal.perkara', 'pasal.pasal')
-                        ->where('pelanggaran_item.pelanggaran_id', $pelanggaran->id)
-                        ->get();
+
+        $pel = Pelanggaran::where('nik', $nik)->where('status', 'done')->where('paid', 'tilang')->orderBy('created_at', 'DESC')->get()->first();
 
         $subject = "Penilangan E-Tilang";
-        return $this->view('emailtilang', compact('ktp', 'pelanggaran', 'pelanggaran_item'))
+        return $this->view('emailtilang', compact('ktp', 'pel'))
                     ->subject($subject);
     }
 }

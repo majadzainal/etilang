@@ -59,30 +59,51 @@
     <h3 class="p-5">Daftar Pelanggaran</h3>
       <table class="table table-borderless table-striped table-hover">
             <thead>
-                  <tr>
-                        <th>#</th>
+                    <tr>
+                        <th>No</th>
+                        <th>NIK</th>
                         <th>Perkara</th>
-                        <th>Pasal</th>
                         <th>Denda</th>
+                        <th>Total Denda</th>
                         <th>Tanggal Pelanggaran</th>
                   </tr>
             </thead>
             <tbody>
-                  @php 
+                    @php 
                         $no = 1;
-                  @endphp
-                  @foreach($pelanggaran_item as $pel)
-                  <tr>
+                    @endphp
+                    @php 
+                        $totalDenda = 0;
+                        $itemCount = count($pel->PelanggaranItem);
+
+                    @endphp
+
+                    @foreach($pel->PelanggaranItem as $item)
+                    @php 
+                        $totalDenda += $item->denda;
+                    @endphp
+                    @endforeach
+                    <tr>
                         <td>{{ $no }}</td>
-                        <td>{{ $pel->perkara }}</td>
-                        <td>{{ $pel->pasal }}</td>
-                        <td>Rp. {{ number_format($pel->denda) }}</td>
+                        <td>{{ $pel->nik }}</td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td>Rp. {{ number_format($totalDenda) }}</td>
                         <td>{{ $pel->created_at }}</td>
-                  </tr>
-                  @php 
+                    </tr>
+                        @foreach($pel->PelanggaranItem as $item)
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $item->Pasal->perkara }}</td>
+                        <td>Rp. {{ number_format($item->denda) }}</td>
+                        <td> - </td>
+                        <td>{{ $item->created_at }}</td>
+                    </tr>
+                        @endforeach
+                    @php 
                         $no++;
-                  @endphp
-                  @endforeach
+                    @endphp
             </tbody>
       </table>
 

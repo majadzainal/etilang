@@ -13,5 +13,5 @@ class Foto extends Model
 
     protected $guarded = [
         'id'
-    ];
+    ]; 
 }
