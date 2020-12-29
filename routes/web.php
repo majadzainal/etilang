@@ -30,7 +30,7 @@ Route::group(['middleware' => 'verified'], function() {
     Route::group(['middleware' => 'admin'], function() {
 
         //USER ROUTE START
-        Route::get('/dashboard/users/action/{notify}', [UserController::class, 'index'])->name('UsersIndex');
+        Route::get('/dashboard/users/action/{notify}', [UserController::class, 'index'])->name('UsersIndexNotify');
 
         Route::get('/dashboard/users', [UserController::class, 'index'])->name('UsersIndex');
 
@@ -46,21 +46,6 @@ Route::group(['middleware' => 'verified'], function() {
 
         Route::get('/dashboard/logs', [UserController::class, 'Logs'])->name('UsersLogs');
 
-        //KTP ROUTE START
-        Route::get('/dashboard/petugas', [PetugasController::class, 'index'])->name('PetugasIndex');
-
-        Route::get('/dashboard/ktp', [KtpController::class, 'index'])->name('KtpIndex');
-
-        Route::get('/dashboard/ktp/create', [KtpController::class, 'create'])->name('KtpCreate');
-
-        Route::post('/dashboard/ktp/store', [KtpController::class, 'store'])->name('KtpStore');
-
-        Route::get('/dashboard/ktp/edit/{id}', [KtpController::class, 'edit'])->name('KtpEdit');
-
-        Route::put('/dashboard/ktp/update/{id}', [KtpController::class, 'update'])->name('KtpUpdate');
-
-        Route::delete('/dashboard/ktp/delete/{id}', [KtpController::class, 'destroy'])->name('KtpDelete');
-
         //PASAL ROUTE START
         Route::get('/dashboard/pasal', [PasalController::class, 'index'])->name('PasalIndex');
 
@@ -75,6 +60,20 @@ Route::group(['middleware' => 'verified'], function() {
         Route::delete('/dashboard/pasal/delete/{id}', [PasalController::class, 'destroy'])->name('PasalDelete');
 
     });
+    //KTP ROUTE START
+    Route::get('/dashboard/petugas', [PetugasController::class, 'index'])->name('PetugasIndex');
+
+    Route::get('/dashboard/ktp', [KtpController::class, 'index'])->name('KtpIndex');
+
+    Route::get('/dashboard/ktp/create', [KtpController::class, 'create'])->name('KtpCreate');
+
+    Route::post('/dashboard/ktp/store', [KtpController::class, 'store'])->name('KtpStore');
+
+    Route::get('/dashboard/ktp/edit/{id}', [KtpController::class, 'edit'])->name('KtpEdit');
+
+    Route::put('/dashboard/ktp/update/{id}', [KtpController::class, 'update'])->name('KtpUpdate');
+
+    Route::delete('/dashboard/ktp/delete/{id}', [KtpController::class, 'destroy'])->name('KtpDelete');
 
     //ROUTE START DAHSBOARD
     Route::get('/', [DashboardController::class, 'index']);
@@ -96,7 +95,7 @@ Route::group(['middleware' => 'verified'], function() {
 
     Route::post('/dashboard/pelanggaran/caripelanggaran', [PelanggaranController::class, 'CariPelanggaran'])->name('CariPelanggaran');
 
-    Route::get('/dashboard/pelanggaran/CariPelanggaranValidate/{nik}', [PelanggaranController::class, 'CariPelanggaranValidate'])->name('CariPelanggaran');
+    Route::get('/dashboard/pelanggaran/CariPelanggaranValidate/{nik}', [PelanggaranController::class, 'CariPelanggaranValidate'])->name('CariPelanggaranValidate');
 
     Route::post('/dashboard/pelanggaran/store', [PelanggaranController::class, 'store'])->name('PelanggaranStore');
 
@@ -116,5 +115,47 @@ Route::group(['middleware' => 'verified'], function() {
 
     Route::get('/dashboard/pelanggaran/successtilang/{nik}/{pelanggaran_id}', [PelanggaranController::class, 'SuccessTilang'])->name('SuccessTilang');
 
+});
+
+
+
+// CLEAR
+//Clear Cache facade value:
+Route::get('/cache-clear', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return '<h1>Cache facade value cleared</h1>';
+});
+//Clear Config cache:
+Route::get('/config-clear', function() {
+    $exitCode = Artisan::call('config:clear');
+    return '<h1>Clear Config cleared</h1>';
+});
+//Clear Route cache:
+Route::get('/route-clear', function() {
+    $exitCode = Artisan::call('route:clear');
+    return '<h1>Route cache cleared</h1>';
+});
+//Clear View cache:
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return '<h1>View cache cleared</h1>';
+});
+
+
+
+//Reoptimized class loader:
+Route::get('/optimize', function() {
+    $exitCode = Artisan::call('optimize');
+    return '<h1>Reoptimized class loader</h1>';
+});
+//Route cache:
+Route::get('/route-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    return '<h1>Routes cached</h1>';
+});
+//Clear Config cache:
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return '<h1>Clear Config cleared</h1>';
 });
 

@@ -109,28 +109,30 @@
                         </div>
                   </form>
                   <h3 class="p-5">Daftar Pelanggaran</h3>
-                  <table class="table table-borderless table-striped table-hover">
-                        <thead>
-                              <tr>
-                                    <th>#</th>
-                                    <th>Perkara</th>
-                                    <th>Pasal</th>
-                                    <th>Denda</th>
-                                    <th>Tanggal Pelanggaran</th>
-                              </tr>
-                        </thead>
-                        <tbody>
-                              @foreach($pelanggaran_item as $pel)
-                              <tr>
-                                    <td>#</td>
-                                    <td>{{ $pel->perkara }}</td>
-                                    <td>{{ $pel->pasal }}</td>
-                                    <td>Rp. {{ number_format($pel->denda) }}</td>
-                                    <td>{{ $pel->created_at }}</td>
-                              </tr>
-                              @endforeach
-                        </tbody>
-                  </table>
+                  <div class="rightScrol">
+                        <table class="table table-borderless table-striped table-hover">
+                              <thead>
+                                    <tr>
+                                          <th>#</th>
+                                          <th>Perkara</th>
+                                          <th>Pasal</th>
+                                          <th>Denda</th>
+                                          <th>Tanggal Pelanggaran</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    @foreach($pelanggaran_item as $pel)
+                                    <tr>
+                                          <td>#</td>
+                                          <td>{{ $pel->perkara }}</td>
+                                          <td>{{ $pel->pasal }}</td>
+                                          <td>Rp. {{ number_format($pel->denda) }}</td>
+                                          <td>{{ $pel->created_at }}</td>
+                                    </tr>
+                                    @endforeach
+                              </tbody>
+                        </table>
+                  </div>
             </div>
       </div>
 @endsection

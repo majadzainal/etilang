@@ -73,35 +73,37 @@
                         </div>
                   </div>
                 <h3 class="p-5">Daftar Pelanggaran</h3>
-                <table class="table table-borderless table-striped table-hover">
-                    <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>NIK</th>
-                                <th>Petugas</th>
-                                <th>Status</th>
-                                <th>Tilang</th>
-                                <th>Tanggal Pelanggaran</th>
-                                <th>Detail</th>
-                            </tr>
-                    </thead>
-                    <tbody>
-                            @foreach($pelanggaran as $pel)
+                  <div class="rightScrol">
+                        <table class="table table-borderless table-striped table-hover">
+                              <thead>
+                                    <tr>
+                                          <th>#</th>
+                                          <th>NIK</th>
+                                          <th>Petugas</th>
+                                          <th>Status</th>
+                                          <th>Tilang</th>
+                                          <th>Tanggal Pelanggaran</th>
+                                          <th>Detail</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    @foreach($pelanggaran as $pel)
 
-                            @if($pel->status == 'finish' ||  $pel->paid == 'tilang')
-                              <tr>
-                                    <td>#</td>
-                                    <td>{{ $pel->nik }}</td>
-                                    <td>{{ $pel->name }}</td>
-                                    <td>{{ $pel->status == 'finish' ? 'Peringatan' : '-' }} </td>
-                                    <td>{{ $pel->paid == 'tilang' ? 'Penilangan' : '-' }} </td>
-                                    <td>{{ $pel->created_at }}</td>
-                                    <td><a href="{{ url('dashboard/pelanggaran/detailpelanggaranitem/'.$pel->id) }}" target="_Blank" class="btn btn-primary btn-sm">DETAIL</a></td>
-                              </tr>
-                            @endif
-                            @endforeach
-                    </tbody>
-                </table>
+                                    @if($pel->status == 'finish' ||  $pel->paid == 'tilang')
+                                          <tr>
+                                                <td>#</td>
+                                                <td>{{ $pel->nik }}</td>
+                                                <td>{{ $pel->name }}</td>
+                                                <td>{{ $pel->status == 'finish' ? 'Peringatan' : '-' }} </td>
+                                                <td>{{ $pel->paid == 'tilang' ? 'Penilangan' : '-' }} </td>
+                                                <td>{{ $pel->created_at }}</td>
+                                                <td><a href="{{ url('dashboard/pelanggaran/detailpelanggaranitem/'.$pel->id) }}" target="_Blank" class="btn btn-primary btn-sm">DETAIL</a></td>
+                                          </tr>
+                                    @endif
+                                    @endforeach
+                              </tbody>
+                        </table>
+                  </div>
             </div>
       </div>
 @endsection

@@ -53,31 +53,32 @@
                   </div>
             </div>
             <div class="card-body p-0">
-                  <table class="table table-borderless table-striped table-hover">
-                        <thead>
-                              <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Registered</th>
-                                    <th>Edited</th>
-                                    <th>Action</th>
-                              </tr>
-                        </thead>
-                        <tbody>
-                              @foreach($users as $user)
-                              <tr>
-                                    <td>{{ ($users->currentPage() - 1) * ($users->perPage()) + $loop->iteration }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->created_at }}</td>
-                                    <td>{{ $user->updated_at }}</td>
-                                    <td><a href="{{ url('dashboard/user/edit/'.$user->id) }}" class="btn btn-success btn-sm">Edit</a></td>
-                              </tr>
-                              @endforeach
-                        </tbody>
-                  </table>
-                 
+                  <div class="rightScrol">
+                        <table class="table table-borderless table-striped table-hover">
+                              <thead>
+                                    <tr>
+                                          <th>#</th>
+                                          <th>Nama</th>
+                                          <th>Email</th>
+                                          <th>Registered</th>
+                                          <th>Edited</th>
+                                          <th>Action</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    @foreach($users as $user)
+                                    <tr>
+                                          <td>{{ ($users->currentPage() - 1) * ($users->perPage()) + $loop->iteration }}</td>
+                                          <td>{{ $user->username }}</td>
+                                          <td>{{ $user->email }}</td>
+                                          <td>{{ $user->created_at }}</td>
+                                          <td>{{ $user->updated_at }}</td>
+                                          <td><a href="{{ url('dashboard/user/edit/'.$user->id) }}" class="btn btn-success btn-sm">Edit</a></td>
+                                    </tr>
+                                    @endforeach
+                              </tbody>
+                        </table>
+                  </div>
             </div>
             {{ $users->appends($request)->links() }}
       </div>

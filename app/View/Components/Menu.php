@@ -60,7 +60,10 @@ class Menu extends Component
                 ],
                 [
                     'label' => 'pelanggaran'
-                ]
+                ],
+                [
+                    'label' => 'ktp'
+                ],
             ];
         }
         

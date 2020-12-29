@@ -19,10 +19,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+
+    <style>
+        .rightScrol{
+            width: 100%;   
+            overflow-x : scroll;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -33,9 +40,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <x-menu :active="$active"/>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -79,10 +84,10 @@
         <main>
             <div class="container-fluid">
                 <div class="div row">
-                    <div class="div col-md-2">
+                    <!-- <div class="div col-md-2">
                         <x-menu :active="$active"/>
-                    </div>
-                    <div class="div col-md-10 main-content p-3">
+                    </div> -->
+                    <div class="div col-md-12 main-content p-3">
                         @yield('content')
                     </div>
                 </div>

@@ -47,31 +47,32 @@
                   </div>
             </div>
             <div class="card-body p-0">
-                  <table class="table table-borderless table-striped table-hover">
-                        <thead>
-                              <tr>
-                                    <th>#</th>
-                                    <th>Perkara</th>
-                                    <th>Pasal</th>
-                                    <th>Denda</th>
-                                    <th>Edited</th>
-                                    <th>Action</th>
-                              </tr>
-                        </thead>
-                        <tbody>
-                              @foreach($pasals as $pas)
-                              <tr>
-                                    <td>{{ ($pasals->currentPage() - 1) * ($pasals->perPage()) + $loop->iteration }}</td>
-                                    <td>{{ $pas->perkara }}</td>
-                                    <td>{{ $pas->pasal }}</td>
-                                    <td><span>Rp. {{ number_format($pas->denda) }}</span></td>
-                                    <td>{{ $pas->updated_at }}</td>
-                                    <td><a href="{{ url('dashboard/pasal/edit/'.$pas->id) }}" class="btn btn-success btn-sm">Edit</a></td>
-                              </tr>
-                              @endforeach
-                        </tbody>
-                  </table>
-                 
+                  <div class="rightScrol">
+                        <table class="table table-borderless table-striped table-hover">
+                              <thead>
+                                    <tr>
+                                          <th>#</th>
+                                          <th>Perkara</th>
+                                          <th>Pasal</th>
+                                          <th>Denda</th>
+                                          <th>Edited</th>
+                                          <th>Action</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    @foreach($pasals as $pas)
+                                    <tr>
+                                          <td>{{ ($pasals->currentPage() - 1) * ($pasals->perPage()) + $loop->iteration }}</td>
+                                          <td>{{ $pas->perkara }}</td>
+                                          <td>{{ $pas->pasal }}</td>
+                                          <td><span>Rp. {{ number_format($pas->denda) }}</span></td>
+                                          <td>{{ $pas->updated_at }}</td>
+                                          <td><a href="{{ url('dashboard/pasal/edit/'.$pas->id) }}" class="btn btn-success btn-sm">Edit</a></td>
+                                    </tr>
+                                    @endforeach
+                              </tbody>
+                        </table>
+                  </div>
             </div>
             {{ $pasals->appends($request)->links() }}
       </div>
